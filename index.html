@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta de CEP</title>
+</head>
+<body>
+    <h1>Consulta de CEP</h1>
+    <form action="/" method="POST">
+        <label for="cep">CEP:</label>
+        <input type="text" name="cep" id="cep" required>
+        <button type="submit">Consultar</button>
+    </form>
+    {% if data %}
+        <h2>Dados do CEP:</h2>
+        <p>CEP: {{ data.cep }}</p>
+        <p>Logradouro: {{ data.logradouro }}</p>
+        <p>Bairro: {{ data.bairro }}</p>
+        <p>Cidade: {{ data.cidade }}</p>
+        <p>Estado: {{ data.estado }}</p>
+    {% endif %}
+</body>
+</html>
