@@ -1,7 +1,7 @@
 import requests
 from flask import Flask, render_template, request
 
-app = Flask(__name__, template_folder='D:\\DevOps\\Projetos\\Consultar Livros')
+app = Flask(__name__, template_folder='D:\\DevOps\\Projetos\\Consultar CEP')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -14,10 +14,8 @@ def index():
                 response.raise_for_status()  # Verificar se a solicitação teve sucesso
 
                 data = response.json()
-                # Aqui você pode manipular a resposta da API
-                # data contém os dados retornados pela API
 
-                return render_template('index.html', data=data)
+                return render_template('index.html', cep=data['code'], estado=data['state'], cidade=data['city'], bairro=data['district'], rua=data['address'])
 
             except requests.exceptions.RequestException as e:
                 return f"Erro na solicitação: {e}"

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>Consulta de CEP</title>
@@ -7,16 +6,26 @@
     <h1>Consulta de CEP</h1>
     <form action="/" method="POST">
         <label for="cep">CEP:</label>
-        <input type="text" name="cep" id="cep" required>
+        <input type="text" name="cep" id="cep" required="">
         <button type="submit">Consultar</button>
     </form>
-    {% if data %}
-        <h2>Dados do CEP:</h2>
-        <p>CEP: {{ data.cep }}</p>
-        <p>Logradouro: {{ data.logradouro }}</p>
-        <p>Bairro: {{ data.bairro }}</p>
-        <p>Cidade: {{ data.cidade }}</p>
-        <p>Estado: {{ data.estado }}</p>
-    {% endif %}
+    
+    <h2>Dados do CEP:</h2>
+    <p>CEP: <span id="codeValue">{{ cep }}</span></p>
+    <p>Estado: <span id="stateValue">{{ estado }}</span></p>
+    <p>Cidade: <span id="cityValue">{{ cidade }}</span></p>
+    <p>Bairro: <span id="districtValue">{{ bairro }}</span></p>
+    <p>Rua: <span id="addressValue">{{ rua }}</span></p>
+
+    <script>
+        // Função para atualizar os elementos HTML com os dados do CEP
+        function preencherDadosDoCEP(data) {
+            document.getElementById("codeValue").textContent = data.code;
+            document.getElementById("stateValue").textContent = data.state;
+            document.getElementById("cityValue").textContent = data.city;
+            document.getElementById("districtValue").textContent = data.district;
+            document.getElementById("addressValue").textContent = data.address;
+        }
+    </script>
 </body>
 </html>
